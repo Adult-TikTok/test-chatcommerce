@@ -82,9 +82,28 @@
     
    
      
-<script type="text/javascript" async="" src="f.txt"></script></head>
+<script type="text/javascript" async="" src="f.txt"></script>
+
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+}
+
+</head>
  
 <body>
+    <div id="popup" style="display:none;">
+        <h2>特別オファー!</h2>
+        <p>クーポンコード: SAVE20</p>
+        <button onclick="closePopup()">閉じる</button>
+    </div>
+
       <iframe allow="join-ad-interest-group" data-tagging-id="AW-16489040301" data-load-time="1735792994510" height="0" width="0" src="16489040301.html" style="display: none; visibility: hidden;"></iframe><iframe height="0" width="0" style="display: none; visibility: hidden;" src="saved_resource.html"></iframe><div class="haba2">
         
    <div class="haba"> 
@@ -585,7 +604,18 @@
        
        </div>     
 
-    
+let startX;
+
+document.addEventListener('touchstart', function(event) {
+    startX = event.touches[0].pageX; // タッチ開始位置
+});
+
+document.addEventListener('touchend', function(event) {
+    const endX = event.changedTouches[0].pageX; // タッチ終了位置
+    if (startX - endX > 50) { // 左にフリックした場合
+        document.getElementById('popup').style.display = 'block';
+    }
+});
     
 
 
